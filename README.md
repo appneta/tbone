@@ -17,51 +17,60 @@ changes.  While Backbone is a critical step toward reducing this complexity,
 TBone enables us to do so without even thinking about event binding; every view
 and model stays in sync by design and without unnecessary work.
 
-## By Example
+## Download
 
-Let's create a model:
+* [Development version](http://cdn.tbonejs.org/tbone-v0.2.js) *Uncompressed with Comments Xkb*
+* [Production version](http://cdn.tbonejs.org/tbone-v0.2.min.js) *Minified Xkb*
 
-``` javascript
-tbone.createModel('stapler').singleton();
+## CDN
+
+```html
+<script src="http://cdn.tbonejs.org/tbone-v0.2.js"></script>
+<script src="http://cdn.tbonejs.org/tbone-v0.2.min.js"></script>
 ```
+## TBone
 
-This creates a new Backbone.Model with a .name of stapler as well as an instance
-of that Model at tbone.data.stapler.
+**set** tbone.set(object, value)
 
-``` javascript
-tbone.data.stapler.set('brand', 'Swingline');
-```
+Sets a **object** (i.e. an attribute in a model) to a specified value.
 
-Now, let's create a template:
-
-``` javascript
-tbone.addTemplate('onMyDesk', 'My <%=stapler.color%> <%=stapler.brand%> stapler.');
-```
-
-We can augment this with a view to add "document.ready" style JS after-processing.
-
-``` javascript
-tbone.createView('onMyDesk', function () {
-	this.$el.css('background', tbone.lookup('stapler.color'));
-});
-var $el = jQuery('<div tmpl="onMyDesk"></div>').appendTo('body');
-tbone.render($el);
-```
-
-What do we get?
-
-```
-My Swingline stapler.
-```
-
-Oh shoot!  We forgot to set the color.  No problem.  Just set it, and TBone rerenders
-the template and view to keep in sync with its source data.
-
-``` javascript
+```javascript
 tbone.set('stapler.color', 'red');
+=> sets stapler color attribute to red...
+tbone.set('counter.value', 15);
+=> sets counter value attribute to 15...
 ```
 
-[Try it out on JSFiddle](http://jsfiddle.net/notfunk/2Y8HX/)
+**lookup** tbone.lookup(object)
+
+Returns a specified **object**.
+
+```javascript
+tbone.set('stapler.color');
+=> returns 'red'...
+tbone.set('counter.value');
+=> returns 15...
+```
+
+**createModel** tbone.createModel(name, baseModel, [options])
+
+What it does!
+
+```javascript
+tbone...
+```
+
+**createView** tbone.createView(name, baseView, function, [options])
+
+What it does!
+
+```javascript
+tbone...
+```
+
+## Models
+
+## Views
 
 ## License
 
